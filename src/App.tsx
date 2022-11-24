@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import SetState from './components/SetState'
+import UseCounter from './components/UseCounter';
+import UseDebounce from './components/UseDebounce';
+import UseFetch from './components/UseFetch'
+import UseHover from './components/UseHover';
+import UseInterval from './components/UseInterval';
+import UseLocalStorage from './components/UseLocalStorage';
+import UseRendersCount from './components/UseRendersCount';
+import UseScroll from './components/UseScroll';
+import UseToggle from './components/UseToggle';
+import UseWindowSize from './components/UseWindowSize';
+import useEffectOnce from './hooks/useEffectOnce';
 
 function App() {
+  useEffectOnce(() => console.log('useEffect ran once'))
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <SetState />
+      <UseFetch />
+      <UseLocalStorage />
+      <UseCounter />
+      <UseDebounce />
+      <UseHover /> 
+      <UseRendersCount />
+      <UseInterval />
+      <UseScroll />
+      <UseToggle />
+      <UseWindowSize />
+    </>
+  )
 }
 
 export default App;
