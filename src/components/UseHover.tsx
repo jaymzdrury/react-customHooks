@@ -1,10 +1,10 @@
 import useHover from '../hooks/useHover'
-import Box from '../wrappers/Box'
+import MarginTop from '../wrappers/MarginTop'
 
 function UseHover() {
     const [hoverRef, isHovering] = useHover()
 
-    return <Box><div ref={hoverRef}>{isHovering ? 'Hovering' : 'Not Hovering'}</div></Box>
+    return <MarginTop><div ref={hoverRef}>{isHovering ? 'Hovering' : 'Not Hovering'}</div></MarginTop>
 }
 
 export default UseHover

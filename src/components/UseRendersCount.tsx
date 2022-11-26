@@ -1,9 +1,9 @@
 import useRendersCount from "../hooks/useRendersCount"
-import Box from "../wrappers/Box"
+import MarginTop from "../wrappers/MarginTop"
 
 function UseRendersCount() {
     const rendersCount = useRendersCount()
-    return <Box>renders: {rendersCount}</Box>
+    return <MarginTop>renders: {rendersCount}</MarginTop>
 }
 
 export default UseRendersCount

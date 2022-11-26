@@ -1,9 +1,9 @@
 import useScroll from "../hooks/useScroll"
-import Box from "../wrappers/Box"
+import MarginTop from "../wrappers/MarginTop"
 
 function UseScroll() {
     const {scroll} = useScroll()
-    return <Box>scroll: {scroll}</Box>
+    return <MarginTop>scroll: {scroll}</MarginTop>
 }
 
 export default UseScroll

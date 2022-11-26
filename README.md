@@ -2,6 +2,8 @@
 
 <img src="https://images.unsplash.com/photo-1527409335569-f0e5c91fa707?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt="React" width="350" />
 
+`LoadedImage` not a hook, but makes sure image is fully loaded before appearing on page
+
 `setState` elminates the need to destructure state that is not being updated
 
 `useEffectOnce` elminates need to add dependency array
@@ -25,3 +27,5 @@
 `useToggle` can set to true, false, or toggle
 
 `useWindowSize` easy way of performing media query styling
+
+`useForm` easy way to make forms
