@@ -1,9 +1,9 @@
 import useToggle from '../hooks/useToggle'
-import Box from '../wrappers/Box'
+import MarginTop from '../wrappers/MarginTop'
 
 function UseToggle() {
     const [on, toggle] = useToggle(true)
-  return <Box>{on ? 'ON': 'OFF'}<br /><button onClick={toggle}>Toggle</button></Box>
+  return <MarginTop>{on ? 'ON': 'OFF'}<br /><button onClick={toggle}>Toggle</button></MarginTop>
 }
 
 export default UseToggle

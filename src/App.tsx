@@ -1,7 +1,9 @@
+import LoadedImage from './components/LoadedImage';
 import SetState from './components/SetState'
 import UseCounter from './components/UseCounter';
 import UseDebounce from './components/UseDebounce';
 import UseFetch from './components/UseFetch'
+import UseForm from './components/UseForm';
 import UseHover from './components/UseHover';
 import UseInterval from './components/UseInterval';
 import UseLocalStorage from './components/UseLocalStorage';
@@ -27,6 +29,8 @@ function App() {
       <UseScroll />
       <UseToggle />
       <UseWindowSize />
+      <UseForm />
+      <LoadedImage src='https://media.istockphoto.com/id/1386479313/photo/happy-millennial-afro-american-business-woman-posing-isolated-on-white.jpg?b=1&s=170667a&w=0&k=20&c=ahypUC_KTc95VOsBkzLFZiCQ0VJwewfrSV43BOrLETM=' />
     </>
   )
 }

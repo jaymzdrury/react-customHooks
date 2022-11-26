@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-function Box({children}:{children: ReactNode}) {
+function MarginTop({children}:{children: ReactNode}) {
   return <div style={{marginTop: 20}}>{children}</div>
 }
-export default Box
+export default MarginTop

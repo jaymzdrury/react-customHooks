@@ -1,9 +1,10 @@
 import useWindowSize from '../hooks/useWindowResize'
+import MarginTop from '../wrappers/MarginTop'
 
 function UseWindowSize() {
     const {width, height} = useWindowSize()
   return (
-    <div>width: {width}, height: {height}</div>
+    <MarginTop>width: {width}, height: {height}</MarginTop>
   )
 }
 
