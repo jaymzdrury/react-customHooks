@@ -1,5 +1,6 @@
 import {useCallback, useEffect, useState} from 'react'
 import PropTypes, {InferProps} from 'prop-types'
+import MarginTop from '../wrappers/MarginTop'
 
 function LoadedImage({src}: InferProps<typeof LoadedImage.propTypes>) {
     const [loading, loadingSet] = useState(true)
@@ -25,7 +26,7 @@ function LoadedImage({src}: InferProps<typeof LoadedImage.propTypes>) {
         }
     },[src, onLoad, onError])
 
-    return !loading ? <img alt='IMG' src={imgSrc} /> : <div />
+    return !loading ? <MarginTop><img alt='IMG' src={imgSrc} style={{height: 30}} /></MarginTop> : <div />
 }
 
 LoadedImage.propTypes = {
