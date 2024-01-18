@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+## React - Custom Hooks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img src="https://images.unsplash.com/photo-1527409335569-f0e5c91fa707?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt="React" width="350" />
 
-Currently, two official plugins are available:
+`LoadedImage` not a hook, but makes sure image is fully loaded before appearing on page
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+`setState` elminates the need to destructure state that is not being updated
 
-## Expanding the ESLint configuration
+`useEffectOnce` elminates need to add dependency array
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+`useFetch` good for fetching async data, APIs...
 
-- Configure the top-level `parserOptions` property like this:
+`useLocalStorage` a hook for both getting and setting local storage values
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+`useCounter` good for cart items
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+`useDebounce` good for passing e.target.value to state, saves on performance
+
+`useHover` good for hover effects, changing text...
+
+`useRendersCount` quick way to check component rendering
+
+`useInterval` can start and stop intervals, declarative
+
+`useScroll` good for scroll effects
+
+`useToggle` can set to true, false, or toggle
+
+`useWindowSize` easy way of performing media query styling
+
+`useForm` easy way to make forms
+
+`useMap` good for working with maps many times
+
+`useGlobalState` an alternative for useContext without re-rendering child components
+
+`useOnScreen` is good for lazy-loading once in view...
