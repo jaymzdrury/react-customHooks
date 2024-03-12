@@ -1,13 +1,12 @@
-import { useState, ChangeEvent, FormEvent } from "react"
+import React from "react";
 
-function useForm() {
-  const [formData, formDataSet] = useState({name: '', password: ''})
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => formDataSet({...formData, [e.target.name]: e.target.value})
-  const handleSubmit = (e: FormEvent) => {
-      e.preventDefault()
-      formDataSet({name: '', password: ''})
-  }
-  return {formData, handleInputChange, handleSubmit, formDataSet}
+export default function useForm() {
+  const [formData, formDataSet] = React.useState({ name: "", password: "" });
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    formDataSet({ ...formData, [e.target.name]: e.target.value });
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    formDataSet({ name: "", password: "" });
+  };
+  return { formData, handleInputChange, handleSubmit, formDataSet };
 }
-
-export default useForm

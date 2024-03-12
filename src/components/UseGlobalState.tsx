@@ -1,17 +1,22 @@
-import { Fragment } from 'react'
-import {createState, useGlobalState} from '../hooks/useGlobalState'
-import MarginTop from '../wrappers/MarginTop'
+import React from "react";
+import { createState, useGlobalState } from "../hooks/useGlobalState";
+import MarginTop from "../ui/MarginTop";
 
-const COUNT = createState(0)
+const Count = createState(0);
 
-const Counter = () => {
-    const [count, countSet] = useGlobalState(COUNT)
-    return <Fragment>Count: {count} <button onClick={() => countSet(count+1)}>+</button></Fragment>
-}
-function UseGlobalState() {
+function Counter(): JSX.Element {
+  const [count, countSet] = useGlobalState(Count);
   return (
-    <MarginTop><Counter /><Counter /></MarginTop>
-  )
+    <React.Fragment>
+      Count: {count} <button onClick={() => countSet(count + 1)}>+</button>
+    </React.Fragment>
+  );
 }
-
-export default UseGlobalState
+export default function UseGlobalState(): JSX.Element {
+  return (
+    <MarginTop>
+      <Counter />
+      <Counter />
+    </MarginTop>
+  );
+}

@@ -1,19 +1,24 @@
-import {useState} from 'react'
-function useLocalStorage(key: string, initialValue: any) {
-    const [localStorageValue, setLocalStorageValue] = useState(() => getLocalStorageValue(key, initialValue))
+import React from "react";
 
-    const setValue = (value: any) => {
-        const valueToStore = value instanceof Function ? value(localStorageValue) : value
-        setLocalStorageValue(value)
-        localStorage.setItem(key, JSON.stringify(valueToStore))
-    }
-
-    return [localStorageValue, setValue]
+function getLocalStorageValue<T extends string, K>(key: T, initialValue: K) {
+  const itemFromStorage = localStorage.getItem(key);
+  return itemFromStorage ? JSON.parse(itemFromStorage) : initialValue;
 }
 
-function getLocalStorageValue(key: string, initialValue: any) {
-    const itemFromStorage = localStorage.getItem(key)
-    return itemFromStorage ? JSON.parse(itemFromStorage) : initialValue
-}
+export default function useLocalStorage<T extends string, K>(
+  key: T,
+  initialValue: K
+) {
+  const [localStorageValue, setLocalStorageValue] = React.useState(() =>
+    getLocalStorageValue(key, initialValue)
+  );
 
-export default useLocalStorage
+  const setValue = (value: unknown) => {
+    const valueToStore =
+      value instanceof Function ? value(localStorageValue) : value;
+    setLocalStorageValue(value);
+    localStorage.setItem(key, JSON.stringify(valueToStore));
+  };
+
+  return [localStorageValue, setValue];
+}

@@ -1,8 +1,14 @@
-import useFetch from '../hooks/useFetch'
+import useFetch from "../hooks/useFetch";
 
-function UseFetch() {
-  const {loading, error, data} = useFetch('https://jsonplaceholder.typicode.com/users/1',{})
-  return <h6>{loading ? 'Loading...' : error ? 'Error' : data.name}</h6>
+export default function UseFetch(): JSX.Element {
+  const { loading, error, data } = useFetch(
+    "https://jsonplaceholder.typicode.com/users/1",
+    {}
+  );
+
+  if (loading) return <p>Loading...</p>;
+
+  if (error) return <p>{error}</p>;
+
+  return <h6>{data.name}</h6>;
 }
-
-export default UseFetch

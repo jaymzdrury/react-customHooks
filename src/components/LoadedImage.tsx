@@ -1,31 +1,15 @@
-import {useCallback, useEffect, useState} from 'react'
-import MarginTop from '../wrappers/MarginTop'
+import useLoadImage from "../hooks/useLoadImage";
+import { ImgProps } from "../types/types";
 
-function LoadedImage({src}:{src: string}) {
-    const [loading, loadingSet] = useState(true)
-    const [imgSrc, imgSrcSet] = useState('')
+export default function LoadedImage({
+  src,
+  ...rest
+}: { src: string } & ImgProps): JSX.Element {
+  const { loading, error, imgSrc } = useLoadImage(src);
 
-    const onLoad = useCallback(async () => {
-        imgSrcSet(src)
-        loadingSet(false)
-    }, [src])
+  if (loading) return <div />;
 
-    const onError = useCallback(async () => {
-        imgSrcSet('')
-    },[])
+  if (error) return <p>{error}</p>;
 
-    useEffect(() => {
-        const img = new Image()
-        img.src = src as string
-        img.addEventListener("load", onLoad)
-        img.addEventListener("error", onError)
-        return () => {
-            img.removeEventListener("load", onLoad)
-            img.removeEventListener("error", onError)
-        }
-    },[src, onLoad, onError])
-
-    return !loading ? <MarginTop><img alt='IMG' src={imgSrc} style={{height: 30}} /></MarginTop> : <div />
+  return <img src={imgSrc} {...rest} />;
 }
-
-export default LoadedImage

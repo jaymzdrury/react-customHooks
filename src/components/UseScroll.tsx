@@ -1,9 +1,7 @@
-import useScroll from "../hooks/useScroll"
-import MarginTop from "../wrappers/MarginTop"
+import useScroll from "../hooks/useScroll";
+import MarginTop from "../ui/MarginTop";
 
-function UseScroll() {
-    const {scroll} = useScroll()
-    return <MarginTop>scroll: {scroll}</MarginTop>
+export default function UseScroll() {
+  const { scroll } = useScroll();
+  return <MarginTop>scroll: {scroll}</MarginTop>;
 }
-
-export default UseScroll

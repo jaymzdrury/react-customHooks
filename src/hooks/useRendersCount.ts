@@ -1,7 +1,5 @@
-import {useRef} from 'react'
+import React from "react";
 
-function useRendersCount(): number {
-  return ++useRef(0).current
+export default function useRendersCount(): number {
+  return ++React.useRef(0).current;
 }
-
-export default useRendersCount

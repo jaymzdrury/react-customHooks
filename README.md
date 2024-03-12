@@ -6,8 +6,6 @@
 
 `setState` elminates the need to destructure state that is not being updated
 
-`useEffectOnce` elminates need to add dependency array
-
 `useFetch` good for fetching async data, APIs...
 
 `useLocalStorage` a hook for both getting and setting local storage values
