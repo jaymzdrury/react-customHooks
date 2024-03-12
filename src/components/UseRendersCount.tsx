@@ -1,9 +1,7 @@
-import useRendersCount from "../hooks/useRendersCount"
-import MarginTop from "../wrappers/MarginTop"
+import useRendersCount from "../hooks/useRendersCount";
+import MarginTop from "../ui/MarginTop";
 
-function UseRendersCount() {
-    const rendersCount = useRendersCount()
-    return <MarginTop>renders: {rendersCount}</MarginTop>
+export default function UseRendersCount(): JSX.Element {
+  const rendersCount = useRendersCount();
+  return <MarginTop>renders: {rendersCount}</MarginTop>;
 }
-
-export default UseRendersCount

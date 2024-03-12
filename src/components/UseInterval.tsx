@@ -1,14 +1,17 @@
-import useInterval from '../hooks/useInterval'
-import { useState } from 'react'
+import React from "react";
+import useInterval from "../hooks/useInterval";
 
-function UseInterval() {
-    const [count, countSet] = useState(0)
-    const [running, runningSet] = useState(true)
-    useInterval(() => countSet(count+1), running ? 1000 : null)
-    
-    return (
-        <><h1>{count}</h1><button onClick={() => runningSet(prev => !prev)}>{running ? 'STOP' : 'START'}</button></>
-    )
+export default function UseInterval(): JSX.Element {
+  const [count, countSet] = React.useState(0);
+  const [running, runningSet] = React.useState(true);
+  useInterval(() => countSet(count + 1), running ? 1000 : null);
+
+  return (
+    <>
+      <h1>{count}</h1>
+      <button onClick={() => runningSet((prev) => !prev)}>
+        {running ? "STOP" : "START"}
+      </button>
+    </>
+  );
 }
-
-export default UseInterval

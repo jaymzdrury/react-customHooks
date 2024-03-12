@@ -1,14 +1,12 @@
-import { useEffect, useState } from "react"
+import React from "react";
 
-function useScroll() {
-    const [scroll, scrollSet] = useState(0)
-    useEffect(() => {
-        const handleScroll = () => scrollSet(window.pageYOffset)
-        window.addEventListener('scroll',handleScroll)
-        handleScroll()
-        return () => window.removeEventListener('scroll', handleScroll)        
-    },[])
-    return {scroll}
+export default function useScroll(): { scroll: number } {
+  const [scroll, scrollSet] = React.useState(0);
+  React.useEffect(() => {
+    const handleScroll = () => scrollSet(window.pageYOffset);
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  return { scroll };
 }
-
-export default useScroll

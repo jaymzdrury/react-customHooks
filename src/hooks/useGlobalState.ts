@@ -1,28 +1,38 @@
-import { useCallback, useSyncExternalStore } from "react"
+import React from "react";
 
-export function createState(initValue: any){
+type Listener<T> = (state: T) => void;
+
+export function createState<T>(initValue: T) {
   return {
-    listeners: [],
-    state: initValue
-  }
+    listeners: [] as Listener<T>[],
+    state: initValue,
+  };
 }
 
-export function useGlobalState(config: {state: any, listeners: any[]}): [any, (stateOrSetter: any) => void] {
-  const stateSet = useCallback((stateOrSetter: any) => {
-    let next = stateOrSetter
-    if(typeof stateOrSetter === 'function'){
-      next = stateOrSetter(config.state)
-    }
-    config.state = next
-    config.listeners.forEach(l => l())
-  },[])
-
-  const state = useSyncExternalStore(
-    (listener: any) => {
-      config.listeners.push(listener)
-      return () => config.listeners.filter(l => l !== listener)
+export function useGlobalState<T>(config: {
+  state: T;
+  listeners: Listener<T>[];
+}): [T, (stateOrSetter: T) => void] {
+  const stateSet = React.useCallback(
+    (stateOrSetter: T | ((prevState: T) => T)) => {
+      let next: T;
+      if (typeof stateOrSetter === "function") {
+        next = (stateOrSetter as (prevState: T) => T)(config.state);
+      } else {
+        next = stateOrSetter;
+      }
+      config.state = next;
+      config.listeners.forEach((l) => l(next));
     },
-    () => config.state,
-  )
-  return [state, stateSet]
+    [config]
+  );
+
+  const state = React.useSyncExternalStore(
+    (listener: Listener<T>) => {
+      config.listeners.push(listener);
+      return () => config.listeners.filter((l) => l !== listener);
+    },
+    () => config.state
+  );
+  return [state, stateSet];
 }

@@ -1,10 +1,12 @@
-import useHover from '../hooks/useHover'
-import MarginTop from '../wrappers/MarginTop'
+import useHover from "../hooks/useHover";
+import MarginTop from "../ui/MarginTop";
 
-function UseHover() {
-    const {callbackRef, isHovering} = useHover()
+export default function UseHover(): JSX.Element {
+  const { callbackRef, isHovering } = useHover();
 
-    return <MarginTop><div ref={callbackRef}>{isHovering ? 'Hovering' : 'Not Hovering'}</div></MarginTop>
+  return (
+    <MarginTop>
+      <div ref={callbackRef}>{isHovering ? "Hovering" : "Not Hovering"}</div>
+    </MarginTop>
+  );
 }
-
-export default UseHover
