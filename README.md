@@ -4,8 +4,6 @@
 
 `LoadedImage` not a hook, but makes sure image is fully loaded before appearing on page
 
-`setState` elminates the need to destructure state that is not being updated
-
 `useFetch` good for fetching async data, APIs...
 
 `useLocalStorage` a hook for both getting and setting local storage values
