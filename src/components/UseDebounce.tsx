@@ -4,7 +4,7 @@ import MarginTop from "../ui/MarginTop";
 
 export default function UseDebounce(): JSX.Element {
   const [value, valueSet] = React.useState("");
-  const { debouncedValue } = useDebounce(value, 1000);
+  const debouncedValue = useDebounce(value, 1000);
 
   return (
     <MarginTop>

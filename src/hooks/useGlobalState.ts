@@ -1,38 +1,44 @@
 import React from "react";
 
-type Listener<T> = (state: T) => void;
+let globalState = 0;
 
-export function createState<T>(initValue: T) {
-  return {
-    listeners: [] as Listener<T>[],
-    state: initValue,
-  };
+type SetState = React.Dispatch<React.SetStateAction<typeof globalState>>;
+
+const listeners: Array<SetState> = [];
+
+export default function useGlobalState() {
+  const [state, _setState] = React.useState(globalState);
+
+  const setState = (newState: typeof globalState) =>
+    listeners.forEach((l) => l(newState));
+
+  React.useEffect(() => {
+    listeners.push(_setState);
+
+    return () => {
+      listeners.filter((l) => l !== _setState);
+    };
+  }, []);
+
+  return [state, setState] as const;
 }
 
-export function useGlobalState<T>(config: {
-  state: T;
-  listeners: Listener<T>[];
-}): [T, (stateOrSetter: T) => void] {
-  const stateSet = React.useCallback(
-    (stateOrSetter: T | ((prevState: T) => T)) => {
-      let next: T;
-      if (typeof stateOrSetter === "function") {
-        next = (stateOrSetter as (prevState: T) => T)(config.state);
-      } else {
-        next = stateOrSetter;
-      }
-      config.state = next;
-      config.listeners.forEach((l) => l(next));
-    },
-    [config]
-  );
+export function useGlobalStateVersion18() {
+  const setState = (newState: typeof globalState) => {
+    globalState = newState;
+    for (const listener of listeners) listener(globalState);
+  };
 
   const state = React.useSyncExternalStore(
-    (listener: Listener<T>) => {
-      config.listeners.push(listener);
-      return () => config.listeners.filter((l) => l !== listener);
+    (listener: SetState) => {
+      listeners.push(listener);
+
+      return () => {
+        listeners.filter((l) => l !== listener);
+      };
     },
-    () => config.state
+    () => globalState
   );
-  return [state, stateSet];
+
+  return [state, setState] as const;
 }
