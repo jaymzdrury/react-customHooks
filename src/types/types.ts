@@ -1,12 +1,6 @@
 import { z } from "zod";
 
 export type ImgProps = React.ComponentPropsWithoutRef<"img">;
-const ImgLoader = z.object({
-  loading: z.boolean(),
-  error: z.string().nullable(),
-  imgSrc: z.string().url(),
-});
-export type ImgLoaderProps = z.infer<typeof ImgLoader>;
 
 const Fetch = z.object({
   loading: z.boolean(),

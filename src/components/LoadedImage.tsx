@@ -1,3 +1,4 @@
+import React from "react";
 import useLoadImage from "../hooks/useLoadImage";
 import { ImgProps } from "../types/types";
 
@@ -5,11 +6,26 @@ export default function LoadedImage({
   src,
   ...rest
 }: { src: string } & ImgProps): JSX.Element {
-  const { loading, error, imgSrc } = useLoadImage(src);
+  const loaded = useLoadImage(src);
 
-  if (loading) return <div />;
+  if (!loaded) return <p>Loading...</p>;
 
-  if (error) return <p>{error}</p>;
+  return <img src={src} {...rest} />;
+}
 
-  return <img src={imgSrc} {...rest} />;
+export function LoadedImageWithoutHook({
+  src,
+  ...rest
+}: { src: string } & ImgProps): JSX.Element {
+  const [loaded, loadedSet] = React.useState(false);
+
+  if (!loaded) return <p>Loading...</p>;
+
+  return (
+    <img
+      src={src}
+      {...rest}
+      onLoad={(e) => loadedSet(e.currentTarget.complete)}
+    />
+  );
 }
